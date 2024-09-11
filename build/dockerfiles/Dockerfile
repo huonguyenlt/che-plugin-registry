@@ -61,8 +61,7 @@ STOPSIGNAL SIGWINCH
 
 RUN mkdir -m 777 /mnt/rootfs/var/www/html/v3
 COPY /VERSION /mnt/rootfs/
-COPY /build/dockerfiles/*.sh /mnt/rootfs/
-COPY /openvsx-sync.json /mnt/rootfs/
+COPY /build/dockerfiles/*.sh /mnt/rootfs/s/
 RUN chmod 755 /mnt/rootfs/*.sh
 COPY /build/dockerfiles/openvsx.conf /mnt/rootfs/etc/httpd/conf.d/
 COPY README.md .htaccess /mnt/rootfs/var/www/html/
@@ -87,19 +86,3 @@ ENV LC_ALL=en_US.UTF-8 \
     # it's needed for openvsx server when vsix is publishing on AirGap environment.
     # Set Xmx to run openvsx server
     JVM_ARGS="-DSPDXParser.OnlyUseLocalLicenses=true -Xmx2048m"
-
-RUN /usr/pgsql-15/bin/initdb && \
-    # Add all vsix files to the database
-    /import-vsix.sh && \
-    # add permissions for anyuserid
-    chgrp -R 0 /var/lib/pgsql/15/data/database && \
-    #cleanup postgresql pid
-    rm /var/lib/pgsql/15/data/database/postmaster.pid && \
-    rm /var/run/postgresql/.s.PGSQL* && \
-    rm /tmp/.s.PGSQL* && \
-    rm /tmp/.lock && \
-    chmod -R 777 /tmp/file && \
-    chmod -R g+rwX /var/lib/pgsql/15/data/database && mv /var/lib/pgsql/15/data/database /var/lib/pgsql/15/data/old
-ENTRYPOINT ["/entrypoint.sh"]
-
-# append Brew metadata here
