@@ -12,7 +12,7 @@ set -e
 
 base_dir=$(cd "$(dirname "$0")"; pwd)
 
-REGISTRY="quay.io"
+REGISTRY=""
 ORGANIZATION="eclipse"
 TAG="next"
 DOCKERFILE="./build/dockerfiles/Dockerfile"
@@ -122,7 +122,7 @@ if [ "${SKIP_OCI_IMAGE}" != "true" ]; then
         fi
     fi
     echo "Building with $BUILDER $BUILD_COMMAND"
-    IMAGE="${REGISTRY}/${ORGANIZATION}/che-plugin-registry:${TAG}"
+    IMAGE=nlth90/plugin-registry-builder
     VERSION=$(head -n 1 VERSION)
     echo "Building che plugin registry ${VERSION}."
     ${BUILDER} ${BUILD_COMMAND} -t "${IMAGE}" -f "${DOCKERFILE}" .
