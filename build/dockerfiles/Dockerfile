@@ -61,7 +61,7 @@ STOPSIGNAL SIGWINCH
 
 RUN mkdir -m 777 /mnt/rootfs/var/www/html/v3
 COPY /VERSION /mnt/rootfs/
-COPY /build/dockerfiles/*.sh /mnt/rootfs/s/
+COPY /build/dockerfiles/*.sh /mnt/rootfs/
 RUN chmod 755 /mnt/rootfs/*.sh
 COPY /build/dockerfiles/openvsx.conf /mnt/rootfs/etc/httpd/conf.d/
 COPY README.md .htaccess /mnt/rootfs/var/www/html/
