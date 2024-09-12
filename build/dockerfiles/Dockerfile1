@@ -87,3 +87,4 @@ ENV LC_ALL=en_US.UTF-8 \
     # Set Xmx to run openvsx server
     JVM_ARGS="-DSPDXParser.OnlyUseLocalLicenses=true -Xmx2048m"
 RUN /install-ovsx.sh
+ENV PATH="/tmp/opt/nodejs/bin:${PATH}"

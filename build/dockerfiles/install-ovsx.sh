@@ -11,3 +11,4 @@ export PATH=/tmp/opt/nodejs/bin:$PATH
 
 # install the cli
 npm install -g ovsx@0.8.3
+ovsx --version
