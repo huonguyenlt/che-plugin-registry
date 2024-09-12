@@ -5,14 +5,14 @@ set -o pipefail
 
 ./start-services.sh
 
-# install temporary nodejs
-mkdir -p /tmp/opt/nodejs && curl -sL https://nodejs.org/download/release/v18.16.1/node-v18.16.1-linux-x64.tar.gz | tar xzf - -C /tmp/opt/nodejs --strip-components=1
-# add path
-export PATH=/tmp/opt/nodejs/bin:$PATH
+# # install temporary nodejs
+# mkdir -p /tmp/opt/nodejs && curl -sL https://nodejs.org/download/release/v18.16.1/node-v18.16.1-linux-x64.tar.gz | tar xzf - -C /tmp/opt/nodejs --strip-components=1
+# # add path
+# export PATH=/tmp/opt/nodejs/bin:$PATH
 
 
-# install the cli
-npm install -g ovsx@0.8.3
+# # install the cli
+# npm install -g ovsx@0.8.3
 
 # insert user
 psql -c "INSERT INTO user_data (id, login_name) VALUES (1001, 'eclipse-che');"
